@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import axios, { AxiosError } from 'axios';
+import { AxiosError } from 'axios';
 import { store } from '../store';
 import { router } from '../router';
 import {getAxiosError} from '../utils/get-axios-error'
+import { api } from '../api'
 
 interface LoginData {
   email: string;
@@ -16,7 +17,7 @@ const loginData: LoginData = {
 
 const login = async () => {
   try {
-    const response = await axios.post('http://localhost:3030/login', loginData);
+    const response = await api.post('/login', loginData);
 
     store.isLogged = 1;
     store.userToken = response.data.token;

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import axios from 'axios';
+import {api} from '../api'
 import { router } from '../router';
 interface SignupData {
   email: string;
@@ -15,7 +15,7 @@ const signupData: SignupData = {
 
 const signup = async () => {
   try {
-    await axios.post('http://localhost:3030/signup', signupData);
+    await api.post('/signup', signupData);
 
     router.push('/login');
   } catch(err: any) {
