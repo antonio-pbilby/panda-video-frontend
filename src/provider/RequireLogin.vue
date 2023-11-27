@@ -7,7 +7,7 @@ import { watch } from 'vue';
 
 const localStorageToken = window.localStorage.getItem('userToken');
 
-store.userToken = localStorageToken || '';
+store.userToken = localStorageToken || store.userToken;
 
 if (!store.userToken) {
   router.push('/login');
