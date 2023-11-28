@@ -3,6 +3,7 @@ import Login from "./views/Login.vue";
 import Signup from "./views/Signup.vue";
 import Videos from "./views/Videos.vue";
 import RequireLogin from "./provider/RequireLogin.vue";
+import Video from "./views/Video.vue";
 
 const routes = [
   {
@@ -21,6 +22,10 @@ const routes = [
         path: "videos",
         component: Videos,
       },
+      {
+        path: "videos/:id",
+        component: Video
+      }
     ],
   },
 ];

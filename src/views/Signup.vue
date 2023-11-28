@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { api } from '../api'
-import { router } from '../router';
 import Input from '../components/Input.vue';
+import { useRouter } from 'vue-router';
 
 interface SignupData {
   email: string;
@@ -14,6 +14,8 @@ const signupData: SignupData = {
   password: '',
   name: '',
 }
+
+const router = useRouter();
 
 const signup = async () => {
   try {
@@ -43,11 +45,11 @@ const signup = async () => {
             <Input v-model:value="signupData.password" name="password" placeholder="••••••••" :required="true" label="Password"
               type="password" />
             <button type="submit"
-              class="w-full text-white bg-sky-500 hover:bg-sky-700 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800 transition-all">Sign
+              class="w-full text-white bg-sky-500 hover:bg-sky-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 transition-all">Sign
               up</button>
             <p class="text-sm font-light text-gray-500 dark:text-gray-400">
               Already have an account? <router-link to="/login"
-                class="font-medium text-indigo-600 hover:underline dark:text-indigo-500">Login</router-link>
+                class="font-medium text-primary-600 hover:underline dark:text-primary-500">Login</router-link>
             </p>
           </form>
         </div>

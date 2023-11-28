@@ -7,7 +7,6 @@ export const api = axios.create({
 
 api.interceptors.response.use(undefined, (error: AxiosError) => {
   if (error?.response?.status === 401) {
-    store.isLogged = 0;
     store.userToken = '';
     router.push('/login');
   }

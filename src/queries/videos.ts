@@ -24,3 +24,17 @@ export const listVideosQuery = () => {
     }
   });
 }
+
+interface VideoResponse {
+  id: string;
+}
+
+export const getVideoQuery = (id: string) => {
+  return useQuery({
+    queryKey: ['videos', id],
+    queryFn: async () => {
+      const response = await api.get<VideoResponse>(`video/${id}`);
+      return response.data;
+    }
+  })
+}
