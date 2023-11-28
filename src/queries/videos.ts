@@ -27,13 +27,21 @@ export const listVideosQuery = () => {
 
 interface VideoResponse {
   id: string;
+  title: string;
+  description: string;
+  created_at: Date;
+  updated_at: Date;
+  video_hls: string;
+  preview: string;
+  extension: string;
+  video_player: string;
 }
 
 export const getVideoQuery = (id: string) => {
   return useQuery({
     queryKey: ['videos', id],
     queryFn: async () => {
-      const response = await api.get<VideoResponse>(`video/${id}`);
+      const response = await api.get<VideoResponse>(`videos/${id}`);
       return response.data;
     }
   })

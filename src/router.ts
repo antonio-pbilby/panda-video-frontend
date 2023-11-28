@@ -17,6 +17,7 @@ const routes = [
   {
     path: "/",
     component: RequireLogin,
+    redirect: "/videos",
     children: [
       {
         path: "videos",
