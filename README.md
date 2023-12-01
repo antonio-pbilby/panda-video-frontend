@@ -1,18 +1,38 @@
-# Vue 3 + TypeScript + Vite
+# Frontend para o projeto de teste do Panda Video
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+## Como rodar a aplicação
 
-## Recommended IDE Setup
+### Localmente
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+Requisitos
+- node18
+- yarn
 
-## Type Support For `.vue` Imports in TS
+Configure um `.env` baseado no `.env.example`
+- `yarn dev`
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+### Produção
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+Requisitos
+- docker
+- [Backend](https://github.com/antonio-pbilby/panda-video-backend) rodando
+- Acesse a rota `http://localhost:3000`
 
-1. Disable the built-in TypeScript Extension
-   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+## Notas sobre o desenvolvimento
+
+### Tecnologias utilizadas
+- Vite: ferramenta mais atual para se usar para desenvolvimento de frontend, extremamente performática
+- VueJS: minha primeira experiência usando a ferramenta, vindo do React. Gostei mais que React, honestamente
+- VueQuery: gerenciamento de estados de requisições, abstração de dados assíncronos para os components
+- VueRouter: roteamento recomendado pela documentação do Vue
+- Flowbite: componentes em tailwind
+
+### Notas sobre o desenvolvimento
+- Minha primeira experiência com vueJs, tive um gargalo no início, mas é uma ferramente mais simples e eficiente que React
+- Preciso terminar a tela de detalhes de um vídeo e fazer busca de vídeos
+- Quanto a busca de vídeos, tenho duas abordagens que considero em mente:
+   - Buscar somente por título, já que a API do Panda Video fornece somente filtragem por título e implementar uma paginação baseada no retorno da API. Abordagem mais performática e que traz os benefícios de performance e usabilidade de paginação, mas perde a usabilidade de poder filtrar em um campo só por título e descrição do vídeo.
+   - Trazer os dados do backend com um limite de página alto, para então fazer a filtragem no frontend por título e descrição, e fazer a paginação somente pelo front. Não curto muito essa abordagem, pois perde os benefícios de performance da paginação do backend, mas adiciona a feature de poder pesquisar tanto pelo título quanto pela descrição com somente um campo de pesquisa.
+- Quero melhorar a autenticação, da forma que está sendo feita atualmente, eu tenho o controle do estado (`store.userToken`) de forma um pouco descentralizada, altero o estado do localStorage em mais de um canto, creio que isso possa ser melhorado para não ter código espalhado sobre a lógica de autenticação.
+- Validação de formulário poderia ser mais complexa, como são campos simples, optei por usar o padrão do html, mas poderia fazer uma validação usando os ref() do build para controle do estado e aplicando a estilização necessária dos erros, ou usar alguma lib de formulários, mas conheço pouco do ecossistema do Vue.
+- Apresentar os erros com um componente de pop-up ou toast no lugar de window.alert para ser mais amigável para o usuário.
